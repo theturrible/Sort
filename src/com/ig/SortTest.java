@@ -13,12 +13,13 @@ import static org.hamcrest.CoreMatchers.*;
  */
 public class SortTest {
 
-
+    //globals
     static int SIZE_OF_TEST_LIST = 1000;  //touch this. - heap space limits on 50000
-
     private List<String> expected = new ArrayList<String>();
     private List<String> actual = new ArrayList<String>();
 
+
+    //actual and expected, expected shuffled twice with nanotime seed(random dist)
 
     @Before
     public void setUp() throws Exception {
@@ -33,21 +34,10 @@ public class SortTest {
 
             Collections.shuffle(expected, new Random(seed));
             Collections.shuffle(expected, new Random(seed));
-    }`
-
-    @Test
-    public void testNullList() {
-        Sort s = new Sort();
-        s.sortMem(null);
-    }
-
-    @Test
-    public void testEmpty() {
-        Sort s = new Sort();
-        s.sortMem(new ArrayList<String>());
     }
 
 
+    //sort tests with timers
     @Test
     public void testSortMem() throws Exception {
         long startTime = System.nanoTime();
@@ -86,5 +76,29 @@ public class SortTest {
         long elapsed = endTime - startTime;
         System.out.println((double) elapsed / 1000000000.0 + " s to run SortShort()");
     }
+
+
+    //null/empty checks
+    @Test
+    public void testNullList() {
+        Sort s = new Sort();
+        s.sortTime(null);
+    }
+    @Test
+    public void testEmpty() {
+        Sort s = new Sort();
+        s.sortTime(new ArrayList<String>());
+    }
+    @Test
+    public void testNullListMemory() {
+        Sort s = new Sort();
+        s.sortMem(null);
+    }
+    @Test
+    public void testEmptyMemory() {
+        Sort s = new Sort();
+        s.sortMem(new ArrayList<String>());
+    }
+
 
 }

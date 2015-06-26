@@ -11,11 +11,7 @@ import java.util.List;
 public class Sort {
     private List<String> toSort;
 
-    {
-
-
-    }
-
+    //call ins sort
     public List<String> sortMem( List<String> sort) {
         //empty checks
         if(sort == null || sort.isEmpty()){
@@ -26,7 +22,7 @@ public class Sort {
         ins();
         return toSort;
     }
-
+    //call quick sort
     public List<String> sortTime(List<String> sort) {
         //empty checks
         if(sort == null || sort.isEmpty()){
@@ -38,8 +34,8 @@ public class Sort {
 
         return toSort;
     }
-
-
+    //insertion sort implementation,
+    // InPlace alg, good for memory, not good on massive lists, but adaptive(for half-sorted
     private void ins(){
         int N = toSort.size();
         for (int i = 1; i < N; i++) {
@@ -51,8 +47,6 @@ public class Sort {
             }
         }
     }
-
-
     //quick sort impl.
     private void quick(int low, int high) {
         int i = low, j = high;
@@ -68,10 +62,9 @@ public class Sort {
         if (low < j) { quick(low, j); }
         if (i < high) { quick(i, high); }
     }
-
-
-
+    // one liner using Collections.sort and a simple comparator.
     public  List<String> sortShort(List<String> toBeSorted) {
+
         Collections.sort(toBeSorted, Comparator.comparing(String::length));
         return toBeSorted;
     }
