@@ -23,7 +23,7 @@ public class SortTest {
 
     @Before
     public void setUp() throws Exception {
-        
+
             actual.add("a");
             expected.add("a");
 
