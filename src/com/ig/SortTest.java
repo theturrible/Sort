@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class SortTest {
 
 
-    static int SIZE_OF_TEST_LIST = 10;  //touch this.
+    static int SIZE_OF_TEST_LIST = 1000;  //touch this.
 
     private List<String> expected = new ArrayList<String>();
     private List<String> actual = new ArrayList<String>();
@@ -41,21 +41,26 @@ public class SortTest {
     }
 
     @Test
+    public void testEmpty() {
+        Sort s = new Sort();
+        s.sortMem(new ArrayList<String>());
+    }
+
+
+    @Test
     public void testSortMem() throws Exception {
         Sort s = new Sort();
         assertThat(actual, is(s.sortMem(expected)));
     }
 
     @Test
-        public void testSortTime() throws Exception {
+    public void testSortTime() throws Exception {
 
     }
 
     @Test
     public void testSortShort() throws Exception {
-
         Sort s = new Sort();
-
         assertThat(actual, is(s.sortShort(expected)));
     }
 

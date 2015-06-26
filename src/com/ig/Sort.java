@@ -16,14 +16,15 @@ public class Sort {
     }
 
     public List<String> sortMem( List<String> sort) {
-
-        if( sort != null){
-            this.toSort = sort;
-            quick(0,toSort.size()-1);
-            return toSort;
-        }else{
+        //empty checks
+        if(sort == null || sort.isEmpty()){
             return null;
         }
+
+        this.toSort = sort;
+        quick(0,toSort.size()-1);
+
+        return toSort;
     }
 
     public void sortTime() {
@@ -31,32 +32,22 @@ public class Sort {
 
     }
 
+
+    //quick sort impl.
+
     private void quick(int low, int high) {
-        int i = low,
-            j = high;
-
-        String pivot = toSort.get(low + (high-low)/2);
-
-        // Divide into two lists
+        int i = low, j = high;
+        String p = toSort.get(low + (high-low)/2);
         while (i <= j) {
-            while (toSort.get(i).length() < pivot.length()) {
-                i++;
-            }
-            while (toSort.get(j).length() > pivot.length()) {
-                j--;
-            }
-            if (i <= j) {
+            while (toSort.get(i).length() < p.length()){ i++; }
+            while (toSort.get(j).length() > p.length()){ j--; }
+            if (i <= j){
                 Collections.swap(toSort, i, j);
-                i++;
-                j--;
+                i++; j--;
             }
         }
-        if (low < j) {
-            quick(low, j);
-        }
-        if (i < high) {
-            quick(i, high);
-        }
+        if (low < j) { quick(low, j); }
+        if (i < high) { quick(i, high); }
     }
 
 
