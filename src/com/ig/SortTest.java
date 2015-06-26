@@ -48,7 +48,7 @@ public class SortTest {
 
         long endTime = System.nanoTime();
         long elapsed = endTime - startTime;
-        System.out.println((double) elapsed / 1000000000.0 + " s to run SortMem()");
+        System.out.println((double) elapsed / 1000000000.0 + "s to run SortMem");
     }
 
     @Test
@@ -61,7 +61,7 @@ public class SortTest {
 
         long endTime = System.nanoTime();
         long elapsed = endTime - startTime;
-        System.out.println((double) elapsed / 1000000000.0 + " s to run SortTime()");
+        System.out.println((double) elapsed / 1000000000.0 + "s to run SortTime");
     }
 
     @Test
@@ -74,7 +74,7 @@ public class SortTest {
 
         long endTime = System.nanoTime();
         long elapsed = endTime - startTime;
-        System.out.println((double) elapsed / 1000000000.0 + " s to run SortShort()");
+        System.out.println((double) elapsed / 1000000000.0 + "s to run SortShort");
     }
 
 
