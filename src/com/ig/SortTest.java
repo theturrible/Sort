@@ -14,7 +14,7 @@ import static org.hamcrest.CoreMatchers.*;
 public class SortTest {
 
 
-    static int SIZE_OF_TEST_LIST = 1000;  //touch this.
+    static int SIZE_OF_TEST_LIST = 1000;  //touch this. - heap space limits on 50000
 
     private List<String> expected = new ArrayList<String>();
     private List<String> actual = new ArrayList<String>();
@@ -24,15 +24,16 @@ public class SortTest {
     public void setUp() throws Exception {
             actual.add("a");
             expected.add("a");
+
             for(int i = 1; i < SIZE_OF_TEST_LIST; i++){
-                actual.add("a" + actual.get(i-1));
-                expected.add("a" + expected.get(i-1));
+                    actual.add("a" + actual.get(i-1));
+                    expected.add("a" + expected.get(i-1));
             }
             long seed = System.nanoTime();
 
             Collections.shuffle(expected, new Random(seed));
             Collections.shuffle(expected, new Random(seed));
-    }
+    }`
 
     @Test
     public void testNullList() {
@@ -49,19 +50,41 @@ public class SortTest {
 
     @Test
     public void testSortMem() throws Exception {
+        long startTime = System.nanoTime();
+
+
         Sort s = new Sort();
         assertThat(actual, is(s.sortMem(expected)));
+
+        long endTime = System.nanoTime();
+        long elapsed = endTime - startTime;
+        System.out.println((double) elapsed / 1000000000.0 + " s to run SortMem()");
     }
 
     @Test
     public void testSortTime() throws Exception {
+        long startTime = System.nanoTime();
 
+
+        Sort s = new Sort();
+        assertThat(actual, is(s.sortTime(expected)));
+
+        long endTime = System.nanoTime();
+        long elapsed = endTime - startTime;
+        System.out.println((double) elapsed / 1000000000.0 + " s to run SortTime()");
     }
 
     @Test
     public void testSortShort() throws Exception {
+        long startTime = System.nanoTime();
+
+
         Sort s = new Sort();
         assertThat(actual, is(s.sortShort(expected)));
+
+        long endTime = System.nanoTime();
+        long elapsed = endTime - startTime;
+        System.out.println((double) elapsed / 1000000000.0 + " s to run SortShort()");
     }
 
 }

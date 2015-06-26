@@ -2,6 +2,7 @@ package com.ig;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -22,19 +23,37 @@ public class Sort {
         }
 
         this.toSort = sort;
+        ins();
+        return toSort;
+    }
+
+    public List<String> sortTime(List<String> sort) {
+        //empty checks
+        if(sort == null || sort.isEmpty()){
+            return null;
+        }
+
+        this.toSort = sort;
         quick(0,toSort.size()-1);
 
         return toSort;
     }
 
-    public void sortTime() {
 
-
+    private void ins(){
+        int N = toSort.size();
+        for (int i = 1; i < N; i++) {
+            for (int j = i; j > 0; j--) {
+                if (toSort.get(j-1).compareTo(toSort.get(j)) > 0) {
+                    Collections.swap(toSort, j-1, j);
+                }
+                else break;
+            }
+        }
     }
 
 
     //quick sort impl.
-
     private void quick(int low, int high) {
         int i = low, j = high;
         String p = toSort.get(low + (high-low)/2);
@@ -53,7 +72,7 @@ public class Sort {
 
 
     public  List<String> sortShort(List<String> toBeSorted) {
-        Collections.sort(toBeSorted);
+        Collections.sort(toBeSorted, Comparator.comparing(String::length));
         return toBeSorted;
     }
 }
