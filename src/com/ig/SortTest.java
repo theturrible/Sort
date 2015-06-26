@@ -23,6 +23,7 @@ public class SortTest {
 
     @Before
     public void setUp() throws Exception {
+        
             actual.add("a");
             expected.add("a");
 
@@ -30,6 +31,7 @@ public class SortTest {
                     actual.add("a" + actual.get(i-1));
                     expected.add("a" + expected.get(i-1));
             }
+
             long seed = System.nanoTime();
 
             Collections.shuffle(expected, new Random(seed));
@@ -99,6 +101,18 @@ public class SortTest {
         Sort s = new Sort();
         s.sortMem(new ArrayList<String>());
     }
+    @Test
+    public void testNullListShort() {
+        Sort s = new Sort();
+        s.sortShort(null);
+    }
+    @Test
+    public void testEmptyShort() {
+        Sort s = new Sort();
+        s.sortShort(new ArrayList<String>());
+    }
 
+
+    //
 
 }
