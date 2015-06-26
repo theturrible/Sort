@@ -1,5 +1,6 @@
 package com.ig;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
@@ -13,28 +14,40 @@ import static org.hamcrest.CoreMatchers.*;
 public class SortTest {
 
 
-    static int SIZE_OF_TEST_LIST = 1000;  //touch this.
+    static int SIZE_OF_TEST_LIST = 10;  //touch this.
 
-    static List<String> expected = new ArrayList<String>();
-    static List<String> actual = new ArrayList<String>();
+    private List<String> expected = new ArrayList<String>();
+    private List<String> actual = new ArrayList<String>();
 
-    {
-        actual.add("a");
-        expected.add("a");
-        for(int i = 1; i < SIZE_OF_TEST_LIST; i++) {
-            actual.add("a" + actual.get(i - 1));
-            expected.add("a" + expected.get(i - 1));
-        }
-        Collections.shuffle(expected, new Random(System.nanoTime()));
+
+    @Before
+    public void setUp() throws Exception {
+            actual.add("a");
+            expected.add("a");
+            for(int i = 1; i < SIZE_OF_TEST_LIST; i++){
+                actual.add("a" + actual.get(i-1));
+                expected.add("a" + expected.get(i-1));
+            }
+            long seed = System.nanoTime();
+
+            Collections.shuffle(expected, new Random(seed));
+            Collections.shuffle(expected, new Random(seed));
+    }
+
+    @Test
+    public void testNullList() {
+        Sort s = new Sort();
+        s.sortMem(null);
     }
 
     @Test
     public void testSortMem() throws Exception {
-
+        Sort s = new Sort();
+        assertThat(actual, is(s.sortMem(expected)));
     }
 
     @Test
-    public void testSortTime() throws Exception {
+        public void testSortTime() throws Exception {
 
     }
 
@@ -42,7 +55,8 @@ public class SortTest {
     public void testSortShort() throws Exception {
 
         Sort s = new Sort();
-        //assertThat(actual, is(s.sortShort(expected)));
+
+        assertThat(actual, is(s.sortShort(expected)));
     }
 
 }
